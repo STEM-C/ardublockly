@@ -140,9 +140,9 @@ Blockly.Arduino['logic_ternary'] = function(block) {
   var valueIf = Blockly.Arduino.valueToCode(block, 'IF',
       Blockly.Arduino.ORDER_CONDITIONAL) || 'false';
   var valueThen = Blockly.Arduino.valueToCode(block, 'THEN',
-      Blockly.Arduino.ORDER_CONDITIONAL) || 'null';
+      Blockly.Arduino.ORDER_CONDITIONAL) || 'NULL';
   var valueElse = Blockly.Arduino.valueToCode(block, 'ELSE',
-      Blockly.Arduino.ORDER_CONDITIONAL) || 'null';
+      Blockly.Arduino.ORDER_CONDITIONAL) || 'NULL';
   var code = valueIf + ' ? ' + valueThen + ' : ' + valueElse;
   return [code, Blockly.Arduino.ORDER_CONDITIONAL];
 };
