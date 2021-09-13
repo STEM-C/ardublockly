@@ -56,7 +56,7 @@ Blockly.Arduino['text_join'] = function(block) {
       argument = Blockly.Arduino.valueToCode(
           block, 'ADD' + n, Blockly.Arduino.ORDER_NONE);
       if (argument == '') {
-        code[n] = '""';
+        code[n] = 'String("")';
       } else {
         code[n] = 'String(' + argument + ')';
       }
@@ -195,21 +195,21 @@ Blockly.Arduino['text_prompt_ext'] = function(block) {
   var func = [];
   var toNumber = returnType == Blockly.Types.NUMBER.output;
   if (toNumber) {
-    func.push('int ' + Blockly.Arduino.DEF_FUNC_NAME + '(String msg) {');
+    func.push('float ' + Blockly.Arduino.DEF_FUNC_NAME + '(String msg) {');
   } else {
     func.push('String ' + Blockly.Arduino.DEF_FUNC_NAME + '(String msg) {');
   }
   func.push('  ' + serialId + '.println(msg);');
   func.push('  boolean stringComplete = false;');
   if (toNumber) {
-    func.push('  int content = 0;');// + serialId + '.parseInt();');
+    func.push('  float content = 0;');// + serialId + '.parseFloat();');
   } else {
     func.push('  String content = "";');
   }
   func.push('  while (stringComplete == false) {');
   func.push('    if (' + serialId + '.available()) {');
   if (toNumber) {
-    func.push('      content = ' + serialId + '.parseInt();');
+    func.push('      content = ' + serialId + '.parseFloat();');
     func.push('      stringComplete = true;');
   } else {
     func.push('      char readChar = (char)' + serialId + '.read();');
