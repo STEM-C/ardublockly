@@ -1,3 +1,6 @@
+# About This Fork
+This fork is used for the [CaSMM](https://github.com/STEM-C/CaSMM/tree/ardublockly-update) project. See our [wiki](https://github.com/STEM-C/ardublockly/wiki/Working-with-the-ArduBlockly-Library) for more info.
+
 # Ardublockly
 Ardublockly is a visual programming editor for Arduino. It is based on Google's [Blockly][1], which has been forked to generate [Arduino][15] code.
 
