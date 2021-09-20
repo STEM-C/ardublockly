@@ -280,7 +280,7 @@ class Gen_compressed(threading.Thread):
     try:
       json_data = json.loads(json_str)
     except Exception as err:
-      print('json decode failed, json_data: ', json_data)
+      print('json decode failed, json_data: ', json_str)
 
     def file_lookup(name):
       if not name.startswith("Input_"):

@@ -142,13 +142,13 @@ Blockly.Toolbox.prototype.lastCategory_ = null;
 /**
  * Initializes the toolbox.
  */
-Blockly.Toolbox.prototype.init = function() {
+Blockly.Toolbox.prototype.init = function(workspace, container) {
   var workspace = this.workspace_;
 
   // Create an HTML container for the Toolbox menu.
   this.HtmlDiv = goog.dom.createDom('div', 'blocklyToolboxDiv');
   this.HtmlDiv.setAttribute('dir', workspace.RTL ? 'RTL' : 'LTR');
-  document.body.appendChild(this.HtmlDiv);
+  container.appendChild(this.HtmlDiv);
 
   // Clicking on toolbox closes popups.
   Blockly.bindEvent_(this.HtmlDiv, 'mousedown', this,
@@ -246,10 +246,12 @@ Blockly.Toolbox.prototype.position = function() {
       treeDiv.style.left =
           (svgPosition.x + svgSize.width - treeDiv.offsetWidth) + 'px';
     } else {  // Left
-      treeDiv.style.left = svgPosition.x + 'px';
+      // treeDiv.style.left = svgPosition.x + 'px';
     }
     treeDiv.style.height = svgSize.height + 'px';
+    // treeDiv.style.top = svgPosition.y + 'px';
     treeDiv.style.top = svgPosition.y + 'px';
+    treeDiv.style.position = 'fixed';
     this.width = treeDiv.offsetWidth;
     if (this.toolboxPosition == Blockly.TOOLBOX_AT_LEFT) {
       // For some reason the LTR toolbox now reports as 1px too wide.

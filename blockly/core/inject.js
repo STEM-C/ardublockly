@@ -53,7 +53,7 @@ Blockly.inject = function(container, opt_options) {
   var options = new Blockly.Options(opt_options || {});
   var svg = Blockly.createDom_(container, options);
   var workspace = Blockly.createMainWorkspace_(svg, options);
-  Blockly.init_(workspace);
+  Blockly.init_(workspace, container);
   workspace.markFocused();
   Blockly.bindEvent_(svg, 'focus', workspace, workspace.markFocused);
   return workspace;
@@ -251,7 +251,7 @@ Blockly.createMainWorkspace_ = function(svg, options) {
  * @param {!Blockly.Workspace} mainWorkspace Newly created main workspace.
  * @private
  */
-Blockly.init_ = function(mainWorkspace) {
+Blockly.init_ = function(mainWorkspace, parentContainer) {
   var options = mainWorkspace.options;
   var svg = mainWorkspace.getParentSvg();
 
@@ -273,7 +273,7 @@ Blockly.init_ = function(mainWorkspace) {
 
   if (options.languageTree) {
     if (mainWorkspace.toolbox_) {
-      mainWorkspace.toolbox_.init(mainWorkspace);
+      mainWorkspace.toolbox_.init(mainWorkspace, parentContainer);
     } else if (mainWorkspace.flyout_) {
       // Build a fixed flyout with the root blocks.
       mainWorkspace.flyout_.init(mainWorkspace);
