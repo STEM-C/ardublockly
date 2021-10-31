@@ -512,7 +512,9 @@ Blockly.Blocks['procedures_callnoreturn'] = {
    */
   init: function() {
     this.appendDummyInput('TOPROW')
-        .appendField(this.id, 'NAME');
+        .appendField(new Blockly.FieldTextInput(
+          Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE,
+          ), 'NAME');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(Blockly.Blocks.procedures.HUE);
@@ -755,7 +757,9 @@ Blockly.Blocks['procedures_callreturn'] = {
    */
   init: function() {
     this.appendDummyInput('TOPROW')
-        .appendField('', 'NAME');
+        .appendField(new Blockly.FieldTextInput(
+          Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE,
+          ), 'NAME');
     this.setOutput(true);
     this.setColour(Blockly.Blocks.procedures.HUE);
     // Tooltip is set in domToMutation.
