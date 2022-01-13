@@ -644,6 +644,21 @@ Blockly.BlockSvg.prototype.showHelp_ = function() {
  * @private
  */
 Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
+  
+  // @CASMM specific code -------
+  // check if user is content creator
+  let showDeletable = false;
+  if (
+    (sessionStorage.getItem('user') &&
+      JSON.parse(sessionStorage.getItem('user')).role &&
+      JSON.parse(sessionStorage.getItem('user')).role.type ===
+        'content_creator') ||
+    !sessionStorage.getItem('user')
+  ) {
+    showDeletable = true;
+  }
+  //---------
+
   if (this.workspace.options.readOnly || !this.contextMenu) {
     return;
   }
@@ -756,6 +771,27 @@ Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
     menuOptions.push(deleteOption);
   }
 
+  //@CASMM: option to lock the block
+  var movableOption = {
+    text: this.movable_ ? 'Set to Not Movable' : 'Set to Movtable',
+    enabled: showDeletable,
+    callback: function () {
+      block.setMovable(!block.movable_);
+    },
+  };
+  menuOptions.push(movableOption);
+
+  //@CASMM: option to edit the block
+  var editableOption = {
+    text: this.editable_ ? 'Set to Not Editable' : 'Set to Editable',
+    enabled: showDeletable,
+    callback: function () {
+      block.setEditable(!block.editable_);
+      block.setDeletable(!block.deletable_);
+    },
+  };
+  menuOptions.push(editableOption);
+
   // Option to get help.
   var url = goog.isFunction(this.helpUrl) ? this.helpUrl() : this.helpUrl;
   var helpOption = {enabled: !!url};
@@ -765,6 +801,7 @@ Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
   };
   menuOptions.push(helpOption);
 
+  
   // Allow the block to add or modify menuOptions.
   if (this.customContextMenu && !block.isInFlyout) {
     this.customContextMenu(menuOptions);

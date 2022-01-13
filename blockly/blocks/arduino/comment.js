@@ -5,6 +5,7 @@ goog.provide('Blockly.Blocks.comment');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
+//@CASMM
 //block comment
 Blockly.Blocks['block_comment']= {
 

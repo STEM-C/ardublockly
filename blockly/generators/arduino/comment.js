@@ -4,6 +4,8 @@ goog.provide('Blockly.Arduino.comment');
 
 goog.require('Blockly.Arduino');
 
+//@CASMM
+
 /**
  * inline comment
  * @param {*} a 

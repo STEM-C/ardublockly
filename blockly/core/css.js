@@ -134,6 +134,7 @@ Blockly.Css.CONTENT = [
   '.blocklySvg {',
     'background-color: #fff;',
     'outline: none;',
+    'height: 70vh;',
     'overflow: hidden;',  /* IE overflows by default. */
   '}',
 
@@ -402,6 +403,7 @@ Blockly.Css.CONTENT = [
   /* Category tree in Toolbox. */
   '.blocklyToolboxDiv {',
     'background-color: #ddd;',
+    'height: 70vh !important;',
     'overflow-x: visible;',
     'overflow-y: auto;',
     'position: absolute;',
