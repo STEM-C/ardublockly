@@ -234,6 +234,10 @@ Blockly.Arduino['math_number_property'] = function(block) {
           Blockly.Arduino.ORDER_MULTIPLICATIVE) || '0';
       code = number_to_check + ' % ' + divisor + ' == 0';
       break;
+    case 'IS_NAN':
+      Blockly.Arduino.addInclude('math', '#include <math.h>');
+      code = 'isnan(' + number_to_check + ')';
+      break;
   }
   return [code, Blockly.Arduino.ORDER_EQUALITY];
 };
